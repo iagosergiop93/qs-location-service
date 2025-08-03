@@ -14,4 +14,7 @@ public interface LocationRepository extends JpaRepository<Location, LocationId> 
 
     @Query(value = "SELECT l.locationId, l.orgId, l.name, l.description, l.phone FROM locations l WHERE orgId = ?1", nativeQuery = true)
     List<LocationDto> findByOrgId(String orgId);
+
+    @Query(value = "SELECT l.locationId, l.orgId, l.name, l.description, l.phone FROM locations l LIMIT ?1 OFFSET ?2", nativeQuery = true)
+    List<LocationDto> findAllDto(Integer limit, Integer offset);
 }
